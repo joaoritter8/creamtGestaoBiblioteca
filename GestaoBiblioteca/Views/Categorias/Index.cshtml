@@ -4,19 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Categorias</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">CADASTRAR NOVA</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CatNome)
+                Categoria
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CatStatus)
+                Status
             </th>
             <th></th>
         </tr>
@@ -28,12 +28,19 @@
                 @Html.DisplayFor(modelItem => item.CatNome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CatStatus)
+                @if (item.CatStatus)
+                {
+                    <text>Ativo</text>
+                }
+                else
+                {
+                    <text>Desativado</text>
+                }
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CatID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CatID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CatID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CatID">EDITAR</a> |
+               
+                <a asp-action="Delete" asp-route-id="@item.CatID">DELETAR</a>
             </td>
         </tr>
 }

@@ -4,34 +4,34 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Movimentação</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">NOVO EMPRÉSTIMO</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Livro)
+                Livro
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pessoa)
+                Pessoa
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProfID)
+                Usuário
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataEmprestimo)
+                Data de Empréstimo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataMaxima)
+                Data Máxima
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataDevolucao)
+                Data de Devolução
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MovimentacaoStatus)
+                Status
             </th>
             <th></th>
         </tr>
@@ -40,10 +40,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Livro.LivroID)
+                @Html.DisplayFor(modelItem => item.Livro.LivroTitulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pessoa.PessoaID)
+                @Html.DisplayFor(modelItem => item.Pessoa.PessoaNome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProfID)
@@ -58,12 +58,22 @@
                 @Html.DisplayFor(modelItem => item.DataDevolucao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MovimentacaoStatus)
-            </td>
+                @if (item.MovimentacaoStatus == "EM")
+                {
+                    <text>Emprestado</text>
+                }
+                @if (item.MovimentacaoStatus == "DE")
+                {
+                    <text>Devolvido</text>
+                }
+                @if (item.MovimentacaoStatus == "AT")
+                {
+                    <text>Atrasado</text>
+                }                  
+            </td>            
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MovimentacaoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MovimentacaoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MovimentacaoID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MovimentacaoID">DEVOLUÇÃO</a>            
+                
             </td>
         </tr>
 }

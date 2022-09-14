@@ -3,48 +3,53 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+<h1>Nova movimentação</h1>
 
-<h1>Create</h1>
-
-<h4>Movimentacao</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="LivroID" class="control-label"></label>
-                <select asp-for="LivroID" class ="form-control" asp-items="ViewBag.LivroID"></select>
+                <label asp-for="LivroID" class="control-label">LIVRO</label>
+                <select asp-for="LivroID" class ="form-control" asp-items="ViewBag.Livros"></select>
             </div>
             <div class="form-group">
-                <label asp-for="PessoaID" class="control-label"></label>
-                <select asp-for="PessoaID" class ="form-control" asp-items="ViewBag.PessoaID"></select>
+                <label asp-for="PessoaID" class="control-label">PESSOA</label>
+                <select asp-for="PessoaID" class ="form-control" asp-items="ViewBag.Pessoas"></select>
             </div>
             <div class="form-group">
-                <label asp-for="ProfID" class="control-label"></label>
-                <input asp-for="ProfID" class="form-control" />
-                <span asp-validation-for="ProfID" class="text-danger"></span>
+                <label asp-for="ProfID" class="control-label">RESPONSÁVEL</label>
+                <select asp-for="ProfID" class="form-control" asp-items="ViewBag.Profissionais"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DataEmprestimo" class="control-label"></label>
+                <label asp-for="DataEmprestimo" class="control-label">DATA DE EMPRÉSTIMO</label>
                 <input asp-for="DataEmprestimo" class="form-control" />
                 <span asp-validation-for="DataEmprestimo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataMaxima" class="control-label"></label>
+                <label asp-for="DataMaxima" class="control-label">DATA MÁXIMA</label>
                 <input asp-for="DataMaxima" class="form-control" />
                 <span asp-validation-for="DataMaxima" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataDevolucao" class="control-label"></label>
+                <label asp-for="DataDevolucao" class="control-label">DATA DE DEVOLUÇÃO</label>
                 <input asp-for="DataDevolucao" class="form-control" />
                 <span asp-validation-for="DataDevolucao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MovimentacaoStatus" class="control-label"></label>
-                <input asp-for="MovimentacaoStatus" class="form-control" />
+                <label asp-for="MovimentacaoStatus" class="control-label">STATUS</label>
+                <select name="MovimentacaoStatus" asp-for="MovimentacaoStatus" class="js-example-basic-single">
+                    <option value="EM">Emprestado</option>
+                    <option value="DE">Devolvido</option>
+                    <option value="AT">Atrasado</option>
+                </select>
                 <span asp-validation-for="MovimentacaoStatus" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -52,9 +57,7 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

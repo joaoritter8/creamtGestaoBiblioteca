@@ -3,65 +3,77 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<h1>Cadastrar nova pessoa</h1>
 
-<h1>Create</h1>
-
-<h4>Pessoa</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="PessoaNome" class="control-label"></label>
+                <label asp-for="PessoaNome" class="control-label">NOME</label>
                 <input asp-for="PessoaNome" class="form-control" />
                 <span asp-validation-for="PessoaNome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PessoaCPF" class="control-label"></label>
+                <label asp-for="PessoaCPF" class="control-label">CPF</label>
                 <input asp-for="PessoaCPF" class="form-control" />
                 <span asp-validation-for="PessoaCPF" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PessoaRG" class="control-label"></label>
+                <label asp-for="PessoaRG" class="control-label">RG</label>
                 <input asp-for="PessoaRG" class="form-control" />
                 <span asp-validation-for="PessoaRG" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PessoaEndereco" class="control-label"></label>
+                <label asp-for="PessoaEndereco" class="control-label">ENDEREÇO</label>
                 <input asp-for="PessoaEndereco" class="form-control" />
                 <span asp-validation-for="PessoaEndereco" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PessoaTelefone" class="control-label"></label>
+                <label asp-for="PessoaTelefone" class="control-label">TELEFONE</label>
                 <input asp-for="PessoaTelefone" class="form-control" />
                 <span asp-validation-for="PessoaTelefone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PessoaEmail" class="control-label"></label>
+                <label asp-for="PessoaEmail" class="control-label">E-MAIL</label>
                 <input asp-for="PessoaEmail" class="form-control" />
                 <span asp-validation-for="PessoaEmail" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="PessoaTipo" class="control-label"></label>
-                <input asp-for="PessoaTipo" class="form-control" />
+                <label asp-for="PessoaTipo" class="control-label">TIPO</label>
+                <select name="PessoaTipo" asp-for="PessoaTipo" class="js-example-basic-single">                    
+                    <option value="AL">ALuno(a)</option>
+                    <option value="AU">Autor(a)</option>
+                    <option value="PR">Profissional</option>
+                    <option value="OU">Outro(a)</option>
+                </select>
                 <span asp-validation-for="PessoaTipo" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="PessoaStatus" /> @Html.DisplayNameFor(model => model.PessoaStatus)
-                </label>
-            </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="col-md-6">
+                    <label asp-for="PessoaStatus" class="control-label">STATUS</label>
+                    <table>
+                        <tr>
+                            <td>@Html.RadioButtonFor(model => model.PessoaStatus, true) <text>Ativo  </text></td>
+                            <td>@Html.RadioButtonFor(model => model.PessoaStatus, false) <text>Desativado</text></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>             
+           
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -3,8 +3,10 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+<h1>Editar</h1>
 
 <h4>Categoria</h4>
 <hr />
@@ -14,25 +16,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CatID" />
             <div class="form-group">
-                <label asp-for="CatNome" class="control-label"></label>
+                <label asp-for="CatNome" class="control-label">NOME</label>
                 <input asp-for="CatNome" class="form-control" />
                 <span asp-validation-for="CatNome" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="CatStatus" /> @Html.DisplayNameFor(model => model.CatStatus)
-                </label>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label asp-for="CatStatus" class="control-label">STATUS</label>
+                    <table>
+                        <tr>
+                            <td>@Html.RadioButtonFor(model => model.CatStatus, true) <text>Ativo  </text></td>
+                            <td>@Html.RadioButtonFor(model => model.CatStatus, false) <text>Desativado</text></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

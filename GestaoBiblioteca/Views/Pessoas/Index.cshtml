@@ -4,37 +4,37 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Pessoas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">CADASTRAR PESSOA</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaNome)
+                Nome
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaCPF)
+                CPF
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaRG)
+                RG
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaEndereco)
+                Endereço
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaTelefone)
+                Telefone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaEmail)
+                E-mail
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaTipo)
+                Tipo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PessoaStatus)
+                Status
             </th>
             <th></th>
         </tr>
@@ -61,15 +61,37 @@
                 @Html.DisplayFor(modelItem => item.PessoaEmail)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PessoaTipo)
+                @if (item.PessoaTipo == "AL")
+                {
+                    <text>Aluno</text>
+                }
+                @if (item.PessoaTipo == "AU")
+                {
+                    <text>Autor</text>
+                }
+                @if (item.PessoaTipo == "PR")
+                {
+                    <text>Profissional</text>
+                }
+                @if (item.PessoaTipo == "OU")
+                {
+                    <text>Outro</text>
+                }                
+            </td>            
+            <td>
+                @if (item.PessoaStatus)
+                {
+                    <text>Ativo</text>
+                }
+                else
+                {
+                    <text>Desativado</text>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PessoaStatus)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PessoaID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PessoaID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PessoaID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PessoaID">EDITAR</a> |
+               
+                <a asp-action="Delete" asp-route-id="@item.PessoaID">DELETAR</a>
             </td>
         </tr>
 }

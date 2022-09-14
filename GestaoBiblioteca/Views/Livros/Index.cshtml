@@ -4,37 +4,37 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Livros</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Cadastrar novo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LivroISBN)
+                ISBN
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LivroTitulo)
+                Título
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Autor)
+                Autor
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LivroEditora)
+                Editora
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LivroEdicao)
+                Edição
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LivroAno)
+                Ano
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria)
+                Categoria
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LivroStatus)
+                Status
             </th>
             <th></th>
         </tr>
@@ -49,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.LivroTitulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Autor.PessoaID)
+                @Html.DisplayFor(modelItem => item.Autor.PessoaNome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LivroEditora)
@@ -61,15 +61,30 @@
                 @Html.DisplayFor(modelItem => item.LivroAno)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoria.CatID)
+                @Html.DisplayFor(modelItem => item.Categoria.CatNome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LivroStatus)
+                @if (item.LivroStatus == "DP")
+                {
+                    <text>Disponível</text>
+                }
+                @if (item.LivroStatus == "EM")
+                {
+                    <text>Emprestado</text>
+                }
+                @if (item.LivroStatus == "EX")
+                {
+                    <text>Extraviado</text>
+                }
+                @if (item.LivroStatus == "MA")
+                {
+                    <text>Em Manutanção</text>
+                }                
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.LivroID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LivroID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LivroID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.LivroID">EDITAR</a> |
+                
+                <a asp-action="Delete" asp-route-id="@item.LivroID">DELETAR</a>
             </td>
         </tr>
 }
