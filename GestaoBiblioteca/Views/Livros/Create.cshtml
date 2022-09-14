@@ -1,0 +1,72 @@
+﻿@model TesteBiblioteca.Models.Livro
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+<h1>Cadastrar um novo livro</h1>
+
+<h4>Livro</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LivroISBN" class="control-label">ISBN</label>
+                <input asp-for="LivroISBN" class="form-control" />
+                <span asp-validation-for="LivroISBN" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="LivroTitulo" class="control-label">TÍTULO</label>
+                <input asp-for="LivroTitulo" class="form-control" />
+                <span asp-validation-for="LivroTitulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PessoaID" class="control-label">AUTOR</label>
+                <select asp-for="PessoaID" class="form-control" asp-items="ViewBag.Autores"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LivroEditora" class="control-label">EDITORA</label>
+                <input asp-for="LivroEditora" class="form-control" />
+                <span asp-validation-for="LivroEditora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LivroEdicao" class="control-label">EDIÇÃO</label>
+                <input asp-for="LivroEdicao" class="form-control" />
+                <span asp-validation-for="LivroEdicao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LivroAno" class="control-label">ANO</label>
+                <input asp-for="LivroAno" class="form-control" />
+                <span asp-validation-for="LivroAno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatID" class="control-label">CATEGORIA</label>
+                <select asp-for="CatID" class="form-control" asp-items="ViewBag.Categorias"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LivroStatus" class="control-label">STATUS</label>
+                <select name="LivroStatus" asp-for="LivroStatus" class="js-example-basic-single">                    
+                    <option value="DP">Disponível</option>
+                    <option value="EM">Emprestado</option>
+                    <option value="EX">Extraviado</option>
+                    <option value="MA">Em Manutenção</option>
+                </select>
+                <span asp-validation-for="LivroStatus" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

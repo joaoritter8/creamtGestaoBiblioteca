@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using GestaoBiblioteca.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<GestaoBibliotecaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GestaoBibliotecaContext") ?? throw new InvalidOperationException("Connection string 'GestaoBibliotecaContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
