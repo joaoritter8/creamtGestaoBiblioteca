@@ -50,7 +50,7 @@ namespace GestaoBiblioteca.Controllers
         public IActionResult Create()
         {
             ViewData["Livros"] = new SelectList(_context.Livro?.Where(l=> l.LivroStatus == "DP"), "LivroID", "LivroTitulo");
-            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus), "PessoaID", "PessoaNome");
+            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus && p.PessoaTipo != "AU"), "PessoaID", "PessoaNome");
             ViewData["Profissionais"] = new SelectList(_context.Pessoa?.Where(p=> p.PessoaTipo == "PR" && p.PessoaStatus), "PessoaID", "PessoaNome");
             return View();
         }
@@ -69,7 +69,7 @@ namespace GestaoBiblioteca.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Livros"] = new SelectList(_context.Livro?.Where(l => l.LivroStatus == "DP"), "LivroID", "LivroTitulo", movimentacao.LivroID);
-            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus), "PessoaID", "PessoaNome", movimentacao.PessoaID);
+            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus && p.PessoaTipo != "AU"), "PessoaID", "PessoaNome", movimentacao.PessoaID);
             ViewData["Profissionais"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaTipo == "PR" && p.PessoaStatus), "PessoaID", "PessoaNome", movimentacao.ProfID);
             return View(movimentacao);
         }
@@ -88,7 +88,7 @@ namespace GestaoBiblioteca.Controllers
                 return NotFound();
             }
             ViewData["Livros"] = new SelectList(_context.Livro?.Where(l => l.LivroStatus == "DP"), "LivroID", "LivroTitulo", movimentacao.LivroID);
-            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus), "PessoaID", "PessoaNome", movimentacao.PessoaID);
+            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus && p.PessoaTipo != "AU"), "PessoaID", "PessoaNome", movimentacao.PessoaID);
             ViewData["Profissionais"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaTipo == "PR" && p.PessoaStatus), "PessoaID", "PessoaNome", movimentacao.ProfID);
             return View(movimentacao);
         }
@@ -126,7 +126,7 @@ namespace GestaoBiblioteca.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Livros"] = new SelectList(_context.Livro?.Where(l => l.LivroStatus == "DP"), "LivroID", "LivroTitulo", movimentacao.LivroID);
-            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus), "PessoaID", "PessoaNome", movimentacao.PessoaID);
+            ViewData["Pessoas"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaStatus && p.PessoaTipo != "AU" ), "PessoaID", "PessoaNome", movimentacao.PessoaID);
             ViewData["Profissionais"] = new SelectList(_context.Pessoa?.Where(p => p.PessoaTipo == "PR" && p.PessoaStatus), "PessoaID", "PessoaNome", movimentacao.ProfID);
             return View(movimentacao);
         }
